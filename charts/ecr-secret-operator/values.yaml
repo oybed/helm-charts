@@ -1,20 +1,22 @@
-nameOverride: "ecr-secret-operator"
+
+# Default values for ecr-secret-operator
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
 fullnameOverride: ""
 
-subscriptions:
-  - name: ecr-secret-operator-v0-4-0-sub
-    channel: ecr-secret-operator-catalog
-    installPlanApproval: Manual
-    source: ecr-secret-operator-catalog
-    sourceNamespace: ecr-secret-operator
+replicaCount: 1
 
-operatorGroups:
-  - name: operator-sdk-og
-    targetNamespace: ~
+imagePullSecrets: []
 
-catalogSources: []
-  - name: ecr-secret-operator-catalog
-    sourceType: grpc
-    image: quay.io/operator-framework/upstream-community-operators:latest
-    displayName: ecr-secret-operator
-    publisher: operator-sdk
+images:
+  kube_rbac_proxy:
+    repository: gcr.io/kubebuilder/kube-rbac-proxy
+    tag: "v0.8.0"
+  manager:
+    repository: quay.io/mobb/ecr-secret-operator
+    tag: "v0.4.0"
+
+  
+  
