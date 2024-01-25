@@ -6,6 +6,8 @@
 nameOverride: ""
 fullnameOverride: ""
 
+namespace: ecr-secret-operator
+
 replicaCount: 1
 
 imagePullSecrets: []
